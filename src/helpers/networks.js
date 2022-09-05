@@ -10,11 +10,11 @@ export const networkConfigs = {
   },
   "0x4": {
     currencySymbol: "ETH",
-    blockExplorerUrl: "https://rinkeby.etherscan.io/",
+    blockExplorerUrl: "https://kovan.etherscan.io/",
   },
   "0x2a": {
     currencySymbol: "ETH",
-    blockExplorerUrl: "https://kovan.etherscan.io/",
+    blockExplorerUrl: "https://rinkeby.etherscan.io/",
   },
   "0x5": {
     currencySymbol: "ETH",
@@ -48,7 +48,8 @@ export const networkConfigs = {
     chainName: "Smart Chain - Testnet",
     currencyName: "BNB",
     currencySymbol: "BNB",
-    rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    rpcUrl:
+      "https://speedy-nodes-nyc.moralis.io/2eef56c887b28c484654dbb1/bsc/testnet",
     blockExplorerUrl: "https://testnet.bscscan.com/",
   },
   "0x89": {

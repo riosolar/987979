@@ -11,17 +11,19 @@ import { connectors } from "./config";
 const styles = {
   account: {
     height: "42px",
-    padding: "0 15px",
+    padding: "0 10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     width: "fit-content",
     borderRadius: "12px",
-    backgroundColor: "rgb(244, 244, 244)",
+    background:
+      "linear-gradient(222deg, rgb(31, 32, 48) 0%, rgba(26,27,38,1) 31%, rgb(30, 32, 44) 54%, rgba(26,26,37,1) 100%)",
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#f3ba2f",
+    fontWeight: "400",
   },
   connector: {
     alignItems: "center",
@@ -78,14 +80,18 @@ function Account() {
           >
             Connect Wallet
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          {/*<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}> */}
+          <div style={{ display: "flex" }}>
             {connectors.map(({ title, icon, connectorId }, key) => (
               <div
                 style={styles.connector}
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId });
+                    await authenticate({
+                      provider: connectorId,
+                      signingMessage: "Welcome. Please Sign to Log In",
+                    });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {

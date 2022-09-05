@@ -7,8 +7,17 @@ function NativeBalance(props) {
   if (!account || !isAuthenticated) return null;
 
   return (
-    <div style={{ textAlign: "center", whiteSpace: "nowrap" }}>
-      {balance.formatted}
+    <div
+      style={{
+        textAlign: "center",
+        whiteSpace: "nowrap",
+        fontSize: "17px",
+        fontWeight: "500",
+        textAlign: "center",
+        color: "orange",
+      }}
+    >
+      Your BNB Balance : {balance.formatted}
     </div>
   );
 }

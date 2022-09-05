@@ -32,6 +32,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: white;
+  scrollbar-color: #131525 #f3ba2f;
 }
 
 ul[class],

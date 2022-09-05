@@ -15,11 +15,13 @@ export const useVerifyMetadata = () => {
    * @param {object} NFT
    * @returns NFT
    */
+
   function verifyMetadata(NFT) {
     //Pass Through if Metadata already present
     if (NFT.metadata) return NFT;
     //Get the Metadata
     getMetadata(NFT);
+
     //Return Hooked NFT Object
     return results?.[NFT.token_uri] ? results?.[NFT.token_uri] : NFT;
   } //verifyMetadata()
@@ -33,9 +35,22 @@ export const useVerifyMetadata = () => {
   async function getMetadata(NFT) {
     //Validate URI
     if (!NFT.token_uri || !NFT.token_uri.includes("://")) {
-      console.log("getMetadata() Invalid URI", { URI: NFT.token_uri, NFT });
+      // INVALID TOKEN URI CONSOLE LOG
+      //console.log("getMetadata() Invalid URI", { URI: NFT.token_uri, NFT });
+      //console.log("getMetadata() Invalid URI");
       return;
     }
+    if (NFT.token_uri.includes("https://ipfs.moralis.io:2053/ipfs/")) {
+      //let moralisuri = NFT.token_uri;
+      let newuri = NFT.token_uri.replace(
+        "https://ipfs.moralis.io:2053/ipfs/",
+        "https://cloudflare-ipfs.com/ipfs/",
+      );
+      return (NFT.token_uri = newuri);
+      //console.log(moralisuri);
+      //console.log(newuri);
+    }
+
     //Get Metadata
     fetch(NFT.token_uri)
       .then((res) => res.json())
@@ -69,10 +84,10 @@ export const useVerifyMetadata = () => {
           //Set
           setMetadata(NFT, metadata);
           //Log
-          console.log(
+          /*console.log(
             "getMetadata() Late-load for NFT Metadata " + NFT.token_uri,
-            { metadata },
-          );
+            { metadata },*/
+          //console.log("getMetadata() load for NFT Metadata ");
         } //Valid Result
       })
       .catch((err) => {
@@ -92,6 +107,8 @@ export const useVerifyMetadata = () => {
   function setMetadata(NFT, metadata) {
     //Add Metadata
     NFT.metadata = metadata;
+    //set URI
+    //if (metadata?.token_uri) NFT.token_uri = resolveLinkMeta(metadata.token_uri);
     //Set Image
     if (metadata?.image) NFT.image = resolveLink(metadata.image);
     //Set to State

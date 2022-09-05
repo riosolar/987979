@@ -4,7 +4,6 @@ import App from "./App";
 import { MoralisProvider } from "react-moralis";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import QuickStart from "components/QuickStart";
 
 /** Get your free Moralis Account https://moralis.io/ */
 
@@ -25,17 +24,13 @@ const Application = () => {
       </MoralisProvider>
     );
   else {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <QuickStart />
-      </div>
-    );
+    return <div style={{ display: "flex", justifyContent: "center" }}></div>;
   }
 };
 
 ReactDOM.render(
   <StrictMode>
-    <Application />
+    <Application />,
   </StrictMode>,
   document.getElementById("root"),
 );
